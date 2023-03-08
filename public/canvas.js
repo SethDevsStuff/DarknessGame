@@ -94,7 +94,7 @@ function initCanvas(id, settings){//ID of HTML element you want canvas to be in.
     canvas.element.setAttribute("id", settings.name);
     canvas.element.width = settings.width || 300;
     canvas.element.height = settings.height || 150;
-    canvas.element.style["background-color"] = "white";
+    canvas.element.style["background-color"] = "dimgray";
     canvas.element.style.display = "block";
 
     var body = document.getElementsByTagName("body")[0];
