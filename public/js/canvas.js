@@ -619,7 +619,7 @@ function Component(x, y, size, settings){
 
                     if(this.outline.draw){
                         this.canvas.ctx.strokeStyle = this.outline.color;
-                        this.canvas.ctx.lineWidth = this.outline.width;
+                        this.canvas.ctx.lineWidth = this.outline.width * this.canvas.scaled;
                         this.canvas.ctx.strokeRect(v.x, v.y, v.w, v.h);
                     }
                     //if(rotate) this.canvas.ctx.rotate(-1*this.getRotation());
