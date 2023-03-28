@@ -11,7 +11,7 @@ window.addEventListener("keyup", handleKeyAction);
 
 var inMenu = false;
 var menuCooldown = false;
-var cts = false; //cutscene
+var cts = true; //cutscene
 
 var sprites = {
     important: image('img/important.png'),
@@ -100,7 +100,7 @@ function processKeys(){
                 player.animations.run.resume();
                 player.size.sy = 32.1;
             }
-            player.y += playerSpeed/frameRate;
+            player.y += playerSpeed*(1/frameRate);
             var i;
             for(i=0;i<allObstacles.length;i++){
                 if(allObstacles[i].functioning() && detectCrash(player, allObstacles[i].component)){
@@ -115,7 +115,7 @@ function processKeys(){
                 player.animations.run.resume();
                 player.size.sy = 32.1;
             }
-            player.x -= playerSpeed/frameRate;
+            player.x -= playerSpeed*(1/frameRate);
             for(i=0;i<allObstacles.length;i++){
                 if(allObstacles[i].functioning() && detectCrash(player, allObstacles[i].component)){
                     player.x = allObstacles[i].getSide('right');
@@ -129,7 +129,7 @@ function processKeys(){
                 player.animations.run.resume();
                 player.size.sy = 32.1;
             }
-            player.x += playerSpeed/frameRate;
+            player.x += playerSpeed*(1/frameRate);
             for(i=0;i<allObstacles.length;i++){
                 if(allObstacles[i].functioning() && detectCrash(player, allObstacles[i].component)){
                     player.x = allObstacles[i].getSide('left');
@@ -143,7 +143,7 @@ function processKeys(){
                 player.animations.run.resume();
                 player.size.sy = 32.1;
             }
-            player.y -= playerSpeed/frameRate;
+            player.y -= playerSpeed*(1/frameRate);
             for(i=0;i<allObstacles.length;i++){
                 if(allObstacles[i].functioning() && detectCrash(player, allObstacles[i].component)){
                     player.y = allObstacles[i].getSide('bottom');
@@ -172,7 +172,53 @@ function processKeys(){
             }
         } 
     } else {
-        if(keys.includes(32)){//Space
+        if(cts && mainData.active){
+            if(keys.includes(32)){//Space
+                if(mainData.location == 'main' && mainData.selection == 1 && mainData.move){
+                    playChangeText.hide();
+                    playerChange.animations.show.run(() => {
+                        mainMenu.hide();
+                        mainData.active = false;
+                        mainData.move = false;
+                        backgroundInf[0].run();
+                    });
+                } else if(mainData.location == 'main' && mainData.selection == 0 && mainData.move) {
+                    credits.show();
+                    mainData.move = false;
+                    setTimeout(function () {
+                        mainData.move = true;
+                    }, 1000)
+                    mainData.location = 'credits';
+                    credText.animations.scroll.run(() => {
+                        mainData.location = 'main';
+                        credText.y = 700;
+                        credits.hide();
+                    });
+                } else if(mainData.location == 'credits' && mainData.move){
+                    credText.animations.scroll.stop();
+                    mainData.move = false;
+                    setTimeout(function () {
+                        mainData.move = true;
+                    }, 1000)
+                    mainData.location = 'main';
+                    credits.hide();
+                    credText.y = 700;
+                }
+            } else if(keys.includes(65) && mainData.move){//A
+                if(mainData.selection != 0){
+                    mainData.selection--;
+                    mainCred.outline.width = 6;
+                    mainPlay.outline.width = 3;
+                }
+            } else if(keys.includes(68) && mainData.move){//D
+                if(mainData.selection != 1){
+                    mainData.selection++;
+                    mainCred.outline.width = 3;
+                    mainPlay.outline.width = 6;
+                }
+            }
+        }
+        else if(keys.includes(32) && !mainData.active){//Space
             if(!menuCooldown){
                 boxMain.hide();
                 boxOther.hide();
@@ -322,6 +368,7 @@ function Trigger(component, action, group){
 
 function Obstacle(component, group){
     this.component = component;
+    this.component.hide();
     this.group = group;
     this.showing = true;
     this.component.opacity = .7;
@@ -367,4 +414,9 @@ function detectCrash(comp1, comp2){
     if(dir1.left > dir2.right || dir2.left > dir1.right) return false;
     if(dir1.bot > dir2.top || dir2.bot > dir1.top) return false;
     return true;
+}
+
+function quote(text, author){
+    text.push('                 -' + author);
+    return text;
 }
