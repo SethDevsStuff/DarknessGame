@@ -15,6 +15,21 @@ changePlayer('Anton' , () => {
         }, () => {hector[2].run();});
 */
 
+var backgroundInf = [
+    speak(true, '', ['In this world, every person has the', 'energy of life known as Esha. This force', 'is life. The Esha of every person', 'is individually unique, like a fingerprint.'], () => {backgroundInf[1].run();}),
+    speak(true, '', ['People born with special powers known as', 'Graces are able to use esha in additional,', 'useful ways. The Graced are revered by many', 'in the world. Some more than others'], () => {backgroundInf[2].run();}),
+    speak(true, '', ['Firstly, the Grace of Blood.', 'The power to give or take Esha,', 'which can heal or harm. This Grace', 'is importantly utilized by healers, who', 'give esha to patients in order to heal.'], () => {backgroundInf[3].run();}),
+    speak(true, '', ['The Grace of Heart.', 'The ability to flow esha into parts', 'of the body, enhancing the strength, speed,', 'agility, and senses. Those with this Grace', 'typically become warriors.'], () => {backgroundInf[4].run();}),
+    speak(true, '', ['The Grace of Mind.', 'The power to imbue objects with esha,', 'adding unique and helpful properties', 'to the objects. Used by alchemists', 'and artificers.'], () => {backgroundInf[5].run();}),
+    speak(true, '', ['The Grace of Sight.', 'The rarest of the four graces and unlike', 'the rest. Rather than manipulating esha,', 'the Graced of Sight can detect esha all around them,', 'and can locate the source of anyones esha just using', 'a name.'], () => {backgroundInf[6].run();}),
+    speak(true, '', ['Even more rarely will one with the Grace', 'of Sight be able to see they future.', 'The lucky few are prophets, but there has not', 'been one in centuries...'], () => {
+        playerChange.animations.hide.run(() => {
+            playChangeText.show();
+            cts = false;
+        });
+    }),
+];
+
 var hassanLethiaPart1 = [
     speak(false, 'Aunt Lethia', ['The Hierophant and the Witnesses have taken over Nazirah.', 'Prince Hassan, you came here to be safe.', 'But even here in Pallas Athos he still has massive influence.'], () => {hassanLethiaPart1[1].run()}),
     speak(true, 'Hassan', ['But-'], () => {hassanLethiaPart1[2].run()}),
@@ -77,20 +92,39 @@ var hassanLethiaPart1 = [
             });
         });
     }, true),
-    speak(false, 'Lethia', ['Prince Hassan.', 'Welcome home.']),
-    speak(true, 'Hassan', ['Aunt Lethia.']),
-    speak(false, 'Lethia', ['Aunt Lethia?', 'Come now, Hassan. You know how to address', 'your new queen.']),
-    speak(true, 'Hassan', ['My mother is the queen.', "Whatever you've done with her, you are still", 'nothing but a jealous usurper.']),
-    speak(false, 'Lethia', ['Hassan, that anger does not serve you.']),
-    speak(true, 'Hassan', ['What have you done with the rest of my soldiers?']),
-    speak(false, 'Lethia', ['You mean the rest of your scraped-together', "band of misfits? Don't worry. They're all", "alive. Imprisoned, but alive. You'll be seeing them shortly."]),
-    speak(true, 'Hassan', ['I put my trust in you. I put all their lives', 'in your hands. And you--', 'you betrayed all of us.']),
-    speak(false, 'Lethia', ['No. YOU did. By leading them here, telling them', 'you were the Prophet they had been waiting for.', "When we both know that couldn't be further", 'from the truth.']),
-    speak(true, 'Hassan', ['...']),
-    speak(false, 'Lethia', ['Ha!', 'If there is one thing that has surprised me, Hassan,', "it's that carried on this farce for so long.", 'You certainly played your part well. You were exactly', 'what they wanted you to be.']),
-    speak(false, 'Lethia', ['A leader. Smart, charismatic. Yet, when', 'they find out what you truly are, do you think', 'any of that will matter?']),
-    speak(true, 'Hassan', ['How--how did you--?']),
-    speak(false, 'Lethia', ['I was more surprised than anyone when you had your', 'dream that night. For a moment,', 'I almost believed it. That you were the long-awaited', 'Prophet, come at last.'])
+    speak(false, 'Lethia', ['Prince Hassan.', 'Welcome home.'], () => {hassanLethiaPart1[15].run();}),
+    speak(true, 'Hassan', ['Aunt Lethia.'], () => {hassanLethiaPart1[16].run();}),
+    speak(false, 'Lethia', ['Aunt Lethia?', 'Come now, Hassan. You know how to address', 'your new queen.'], () => {hassanLethiaPart1[17].run();}),
+    speak(true, 'Hassan', ['My mother is the queen.', "Whatever you've done with her, you are still", 'nothing but a jealous usurper.'], () => {hassanLethiaPart1[18].run();}),
+    speak(false, 'Lethia', ['Hassan, that anger does not serve you.'], () => {hassanLethiaPart1[19].run();}),
+    speak(true, 'Hassan', ['What have you done with the rest of my soldiers?'], () => {hassanLethiaPart1[20].run();}),
+    speak(false, 'Lethia', ['You mean the rest of your scraped-together', "band of misfits? Don't worry. They're all", "alive. Imprisoned, but alive. You'll be seeing them shortly."], () => {hassanLethiaPart1[21].run();}),
+    speak(true, 'Hassan', ['I put my trust in you. I put all their lives', 'in your hands. And you--', 'you betrayed all of us.'], () => {hassanLethiaPart1[22].run();}),
+    speak(false, 'Lethia', ['No. YOU did. By leading them here, telling them', 'you were the Prophet they had been waiting for.', "When we both know that couldn't be further", 'from the truth.'], () => {hassanLethiaPart1[23].run();}),
+    speak(true, 'Hassan', ['...'], () => {hassanLethiaPart1[24].run();}),
+    speak(false, 'Lethia', ['Ha!', 'If there is one thing that has surprised me, Hassan,', "it's that carried on this farce for so long.", 'You certainly played your part well. You were exactly', 'what they wanted you to be.'], () => {hassanLethiaPart1[25].run();}),
+    speak(false, 'Lethia', ['A leader. Smart, charismatic. Yet, when', 'they find out what you truly are, do you think', 'any of that will matter?'], () => {hassanLethiaPart1[26].run();}),
+    speak(true, 'Hassan', ['How--how did you--?'], () => {hassanLethiaPart1[27].run();}),
+    speak(false, 'Lethia', ['I was more surprised than anyone when you had your', 'dream that night. For a moment,', 'I almost believed it. That you were the long-awaited', 'Prophet, come at last.'], () => {hassanLethiaPart1[28].run();}),
+    speak(true, 'Hassan', ["That's why you didn't want me to ", 'come back here. You never wanted', 'to protect me. You were just afraid that if', 'I proclaimed myself the Prophet, true or false,', 'I would come to Nazirah with an army.'], () => {hassanLethiaPart1[29].run();}),
+    speak(true, 'Hassan', ["I'd reclaim the throne, and undo everything", 'you and the Witnesses had done.', 'No one else even knew I was in Pallas Athos.', "Why didn't you just kill me. It would have", 'been much simpler'], () => {hassanLethiaPart1[30].run();}),
+    speak(false, 'Lethia', ['No matter what you may think of me,', "I'm not a monster, Hassan. You are still", 'my blood.'], () => {hassanLethiaPart1[31].run();}),
+    speak(true, 'Hassan', ['So was my father.'], () => {hassanLethiaPart1[32].run();}),
+    speak(false, 'Lethia', ["And I didn't want him to die, either.", 'The Hierophant forced my hand, when he would not', 'abdicate the throne.'], () => {hassanLethiaPart1[33].run();}),
+    speak(false, 'Lethia', ["Obviously you are unable to stop the", 'Age of Darkness. You are causing it!', 'You are the Deciever the prophecy speaks', 'of. Who will stop us? Nobody can topple', 'the Hierophant. The true last prophet does not even', 'know he is yet. That boy Anton,'], () => {hassanLethiaPart1[34].run();}),
+    speak(false, 'Lethia', ['He is the true Last Prophet.'], () =>{
+        playChangeText.text = ['To be continued...'];
+        playerChange.animations.show.run(() => {
+            setTimeout(function () {
+                credits.show();
+                credInstructions.hide();
+                credText.animations.scroll.run();
+                mainData.move = true;
+                mainData.selection = Infinity;
+                mainData.active = true;
+            }, 2500);
+        });
+    }),
 ];
 
 var surrounding = [
@@ -1207,6 +1241,16 @@ var goalBox = comp(0, 0, {width:300, height:100}, {fill:{color:'gray'}, opacity:
 var goalTitle = comp(150, 20,{font:23}, {type:'text', text:['Objectives:'], font:'consolas', modifiers:'bold'}); goalTitle.setGroup(goalThings);
 var goalText = comp(150, 50, {font:18}, {type:'text', text:['Speak to Aunt Lethia'], font:'consolas'}); goalText.setGroup(goalThings);
 
+var mainData = {active:false, location:'main', selection:1, move:false};
+var mainMenu = group(0, 0);
+var mainBack = comp(0, 0, {width:1366, height:657}, {fill:{color:'ivory'}}); mainBack.setGroup(mainMenu);
+var mainTitle = comp(683, 100, {font:75}, {type:'text', font:'consolas', text:['There Will Come a Darkness']}); mainTitle.setGroup(mainMenu);
+var mainPlay = comp(583, 400, {width:200, height:75}, {fill:{color:'khaki'}, outline:{color:'darkkhaki', draw:true, width:6}}); mainPlay.setGroup(mainMenu);
+var mainPlayText = comp(683, 450, {font:45}, {type:'text', font:'consolas', fill:{color:'darkkhaki'}, text:['Play']}); mainPlayText.setGroup(mainMenu);
+var mainCred = comp(200, 400, {width:200, height:75}, {fill:{color:'gainsboro'}, outline:{draw:true, color:'silver', width:3}}); mainCred.setGroup(mainMenu);
+var mainCredText = comp(300, 450, {font:45}, {type:'text', font:'consolas', fill:{color:'silver'}, text:['Credits']}); mainCredText.setGroup(mainMenu);
+var mainInstruct = comp(683, 550, {font:30}, {type:'text', font:'consolas', text:['Use A & D to navigate the menu', 'Press SPACE to select']}); mainInstruct.setGroup(mainMenu);
+
 var playerChange = group(0, 0); playerChange.opacity = 0;
 playerChange.addAnimation('show', [{path:'opacity', value: 1}], 800, 'linear');
 playerChange.addAnimation('hide', [{path:'opacity', value: 0}], 1000, 'linear');
@@ -1233,3 +1277,56 @@ var dialogueOtherBox = comp(0, 0, {width:820, height:400}, {fill:{color:'silver'
 var dialogueOther = comp(410, 125, {font:24}, {type:'text', font:'consolas', text:['Lorem ipsum dolor sit amet', 'it will be added here', 'in the future :)']}); dialogueOther.setGroup(boxOther);
 var speakerOther = comp(90, 40, {font:16}, {type:'text', modifiers:'italic bold', font:'consolas', text:['player']},); speakerOther.setGroup(boxOther);
 var dialogueDirection2 = comp(410, 375, {font:15}, {type:'text', font:'consolas', text:['Press SPACE to continue']}); dialogueDirection2.setGroup(boxOther);
+
+var credits = group(0, 0); credits.hide();
+var credBack = comp(0, 0, {width:1366, height:657}, {fill:{color:'black'}}); credBack.setGroup(credits);
+var credInstructions = comp(120, 50, {font:15}, {type:'text', font:'consolas', fill:{color:'white'}, text:['Press SPACE to return to menu']}); credInstructions.setGroup(credits);
+var credText = comp(683, 700, {font:40}, {type:'text', font:'consolas', fill:{color:'white'}, text:[
+    'Credits:',
+    '',
+    'Gameplay:',
+    'Movement Controls - Seth Parcell',
+    'Dialogue Implementation - Seth Parcell',
+    'NPCs - Seth Parcell',
+    'Animations - Seth Parcell',
+    '',
+    'Media:',
+    'Menu Composition & Design - Seth Parcell',
+    'Character Sprites - Seth Parcell',
+    'Map Tile Textures - CazWolf',
+    'Tile Map Composition - Seth Parcell',
+    '',
+    'Music:',
+    'Bosanska Artiljerija',
+    'Artist - Bekrije',
+    'MIDI Transcription: onlinesequencer.net,',
+    '#1462284',
+    'Instrumentation - Seth Parcell',
+    '',
+    'Characters, story-line, and dialogue',
+    'created by Katy Rose Pool for the book',
+    'There Will Come a Darkness',
+    '',
+    'Note: Some elements of the story',
+    'were changed from the original to',
+    'save time and keep fluidity',
+    'in the game. It is recommended to',
+    'read the book in addition to',
+    'playing the game.'
+]});
+
+credText.addAnimation('scroll', [{path:'y', value:-1250}], 75000, 'linear');
+
+var loading = group(0, 0);
+var loadBackground = comp(0, 0, {width:1366, height:657}, {fill:{color:'wheat'}}); loadBackground.setGroup(loading);
+var loadQuote = comp(683, 300, {font:40}, {type:'text', fill:{color:'tan'}, font:'consolas', text:quote(['In the social jungle of human existence there is no feeling','of being alive without a sense of identity.'], 'Erik Erikson')}); loadQuote.setGroup(loading);
+var loadText = comp(683, 600, {font:28}, {type:'text', font:'consolas', text:['Loading...']}); loadText.setGroup(loading);
+
+loading.addAnimation('hide', [{path:'opacity', value:0,}], 1000, 'linear');
+function openMainMenu() {
+    loading.animations.hide.run(() => {
+        loading.hide();
+        mainData.active = true;
+        mainData.move = true;
+    });
+}
