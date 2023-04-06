@@ -2,7 +2,7 @@
 var canvas = initCanvas("game",{scale:true, width:1366, height:657, full:true,});
 canvas.ctx.imageSmoothingEnabled = false;
 
-var bosanska = new Audio('Bosanska_Artiljerija.wav');
+var bosanska = new Audio('Bosanska_Artiljerija.mp3');
 bosanska.setAttribute('loop', true);
 
 var keys = [];
