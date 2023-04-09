@@ -22,7 +22,7 @@ var backgroundInf = [
     speak(true, '', ['The Grace of Heart.', 'The ability to flow esha into parts', 'of the body, enhancing the strength, speed,', 'agility, and senses. Those with this Grace', 'typically become warriors.'], () => {backgroundInf[4].run();}),
     speak(true, '', ['The Grace of Mind.', 'The power to imbue objects with esha,', 'adding unique and helpful properties', 'to the objects. Used by alchemists', 'and artificers.'], () => {backgroundInf[5].run();}),
     speak(true, '', ['The Grace of Sight.', 'The rarest of the four graces and unlike', 'the rest. Rather than manipulating esha,', 'the Graced of Sight can detect esha all around them,', 'and can locate the source of anyones esha just using', 'a name.'], () => {backgroundInf[6].run();}),
-    speak(true, '', ['Even more rarely will one with the Grace', 'of Sight be able to see they future.', 'The lucky few are prophets, but there has not', 'been one in centuries...'], () => {
+    speak(true, '', ['Even more rarely will one with the Grace', 'of Sight be able to see they future.', 'The lucky few are prophets, but there has not', 'been one in one hundred years...'], () => {
         playerChange.animations.hide.run(() => {
             playChangeText.show();
             cts = false;
@@ -84,9 +84,11 @@ var hassanLethiaPart1 = [
     }),
     speak(true, 'Hassan', ['Mother? She is still alive?'], () => {
         playerRunTo('y', 107, 600, 3, () => {
-            playerRunTo('x', 1366, 2, () => {
+            playerRunTo('x', 1366, 1000, 2, () => {
                 changeScene(backgrounds.nearLight, nearLight);
-                playerWalkTo('x', 620, 1000, 2, () => {
+                player.x = 100;
+                player.y = 355;
+                playerRunTo('x', 620, 1000, 2, () => {
                     hassanLethiaPart1[14].run();
                 });
             });
@@ -110,10 +112,24 @@ var hassanLethiaPart1 = [
     speak(true, 'Hassan', ["I'd reclaim the throne, and undo everything", 'you and the Witnesses had done.', 'No one else even knew I was in Pallas Athos.', "Why didn't you just kill me. It would have", 'been much simpler'], () => {hassanLethiaPart1[30].run();}),
     speak(false, 'Lethia', ['No matter what you may think of me,', "I'm not a monster, Hassan. You are still", 'my blood.'], () => {hassanLethiaPart1[31].run();}),
     speak(true, 'Hassan', ['So was my father.'], () => {hassanLethiaPart1[32].run();}),
-    speak(false, 'Lethia', ["And I didn't want him to die, either.", 'The Hierophant forced my hand, when he would not', 'abdicate the throne.'], () => {hassanLethiaPart1[33].run();}),
-    speak(false, 'Lethia', ["Obviously you are unable to stop the", 'Age of Darkness. You are causing it!', 'You are the Deciever the prophecy speaks', 'of. Who will stop us? Nobody can topple', 'the Hierophant. The true last prophet does not even', 'know he is yet. That boy Anton,'], () => {hassanLethiaPart1[34].run();}),
-    speak(false, 'Lethia', ['He is the true Last Prophet.'], () =>{
-        playChangeText.text = ['To be continued...'];
+    speak(false, 'Lethia', ["And I didn't want him to die, either.", 'The Hierophant forced my hand, when he would not', 'abdicate the throne. Know this Prince Hassan.', 'You will never, ever, be enough. Nazirah will be mine.'], () => {
+        changePlayer('Anton', () => {
+            player.source = sprites.anton;
+            changeScene(backgrounds.shore, shore);
+            player.x = 670;
+            player.y = 500;
+            direction = 3;
+            ilya.group = shore;
+            ilya.show();
+            ilyaComp.x = 670;
+            ilyaComp.y = 450;
+        }, () => {
+            ilyaAnton[49].run();
+        });
+    }),
+];
+/*
+playChangeText.text = ['To be continued...'];
         playerChange.animations.show.run(() => {
             setTimeout(function () {
                 credits.show();
@@ -124,9 +140,7 @@ var hassanLethiaPart1 = [
                 mainData.active = true;
             }, 2500);
         });
-    }),
-];
-
+*/
 var surrounding = [
     speak(false, '???', ['AHHHHHHHHHH'], () => {goal2.complete();}),
 ];
@@ -206,6 +220,59 @@ var hassanKhepri = [
             judeAnton[21].run();
         })
     }, true),
+    speak(false, 'Khepri', ['Hassan!'], () => {hassanKhepri[16].run(); direction = 3;}),
+    speak(true, 'Hassan', ['Khepri! Are the others okay?'], () => {hassanKhepri[17].run();}),
+    speak(false, 'Khepri', ['Yes, they are okay. How are we', 'going to stop the Hierophant??'], () => {hassanKhepri[18].run();}),
+    speak(true, 'Hassan', ['A prophecy says that while the', 'lighthouse stands, the Seif line will rule', 'Nazirah.'], () => {hassanKhepri[19].run();}),
+    speak(false, 'Khepri', ['Chrism oil! It has an explosive reaction', 'with Godfire. There has to be some', 'laying around here somewhere. Can you find', 'it?'], () => {hassanKhepri[20].run();}),
+    speak(true, 'Hassan', ['Good thinking!'], () => {
+        goal15.complete();
+        cts = false;
+        boxes.important = true;
+    }),
+    speak(false, 'Khepri', ['There we go! The lighthouse is rigged', 'with chrism oil. All that needs to happen now', 'is for it to be lit.'], () => {hassanKhepri[22].run();}),
+    speak(true, 'Hassan', ["I'll do it."], () => {hassanKhepri[23].run();}),
+    speak(false, 'Khepri', ["Hassan, it's too dangerous."], () => {hassanKhepri[24].run();}),
+    speak(true, 'Hassan', ["Everything I've done has gone wrong,", 'and I want to do at least one thing right.'], () => {
+        goal16.complete();
+        cts = false;
+    }),
+    speak(true, 'Hassan', ['The smoke. I cannot breathe.', "It's too much."], () => {
+        playChangeText.hide();
+        playerChange.animations.show.run(() => {
+            hassanKhepri[26].run();
+        });
+    }, true),
+    speak(false, 'Khepri', ['Hassan?', 'Hassan!!'], () => {
+        playChangeText.text = ['Anton']
+        playChangeText.animations.show.run(() => {
+            player.source = sprites.anton;
+            player.x = 985;
+            player.y = -48;
+            judeComp.x = 1033;
+            judeComp.y = -48;
+            jude.show();
+            jude.group = shore;
+            changeScene(backgrounds.shore, shore);
+            playerRunTo('y', 50, 500, 0, () => {});
+            jude.runTo('y', 30, 300, 0, () => {});
+            playerChange.animations.hide.run(() => {
+                background.x += 5;
+                for(let i=0;i<1000;i++){
+                    setTimeout(() => {
+                        if(isEven(i)){
+                            background.x += 10;
+                        } else {
+                            background.x -= 10;
+                        }
+                    }, i*150);
+                }
+                setTimeout(() => {
+                    antonDream[4].run();
+                }, 2000);
+            });
+        });
+    }),
 ];
 
 var antonTappan = [
@@ -253,7 +320,44 @@ var antonDream = [
                 antonEphyraPart1[11].run();
             });
         });
-    }, true)
+    }, true),
+    speak(true, 'Anton', ["What's happening!?"], () => {
+        direction = 2;
+        jude.direction = 2;
+        antonDream[5].run();
+    }),
+    speak(false, 'Jude', ['The lighthouse! Something is happening.'], () => {antonDream[6].run();}),
+    speak(true, 'Anton and Jude', ['AHHHHHHHHHHHHHHHHHH'], () => {
+        playerRunTo('y', 650, 300, 3, () => {
+            setTimeout(() => {
+                playChangeBox.fill.color = 'white';
+                playerChange.animations.show.run(() => {
+                    antonDream[7].run();
+                });
+            }, 1000);
+        })
+        jude.runTo('y', 650, 300, 3, () => {})
+    }),
+    speak(true, 'Anton', ['Am I... dead? No,', "I'm floating in the water.", 'I sense something else. I can see...', 'Ephyra? And Beru and Hector. That must be', 'Tel Amot. Ephyra has taken the life of Hector...'], () => {antonDream[8].run()}),
+    speak(true, 'Anton', ['Mrs. Tappan? It seems that she will', "help Ephyra find Eleazar's Chalice."], () => {antonDream[9].run()}),
+    speak(true, 'Anton', ['I only blinked. What do I see now?', 'This must be the Age of Darkness. A city in ruins,', 'a red sky, and a sun obsured by shadow.', 'Smoke, smoke everywhere, twisting through the cracks of', 'the skeletal remains of buildings.'], () => {antonDream[10].run()}),
+    speak(true, 'Anton', ['The final piece of the prophecy revealed.', 'In vision of Grace and fire.', 'To bring the age of dark to yield.', 'Or break the world entire.'], () => {antonDream[11].run()}),
+    speak(true, 'Anton', ['This is my purpose.', 'The fate of the world rests on my shoulders.', 'I am the Last Prophet.', 'And I will stop the Age of Darkness', 'in its tracks.'], () => {
+        playChangeText.text = ['To be continued...'];
+        setTimeout(() => {
+            playChangeBox.fill.color = black;
+            setTimeout(function () {
+                battle.pause();
+                bosanska.play();
+                credits.show();
+                credInstructions.hide();
+                credText.animations.scroll.run();
+                mainData.move = true;
+                mainData.selection = Infinity;
+                mainData.active = true;
+            }, 2500);
+        }, 1500);
+    }),
 ];
 /*
 playerChange.animations.hide.run(() => {
@@ -439,12 +543,16 @@ var antonEphyraPart2 = [
     }),
 ];
 
+var judeOww = speak(false, 'Jude', ['Owwwwwww...'], () => {healer.important = true; jude.runTo('x', player.x, 300, 2, () => {jude.hide();})});
+
 var paladin = [
     speak(false, 'Guard', ['The Order of the Last Light requests the', 'presence of Prince Hassan of Herat at', 'the docks immediately. This will be a PRIVATE meeting.'], () => {
         mOrder.runTo('y', 0, 300, 3, () => {mOrder.group = antonRoom; goal7.complete(); jude.show(); cts = false;})
     }),
     speak(false, 'Sentry', ['STOP! You are being detained for', 'tresspassing on temple grounds at this time of day.'], () => {
         mOrder.group = temple;
+        player.animations.run.stop();
+        player.size.sy = 0.1;
         mOrderComp.x = 485;
         mOrderComp.y = 665;
         mOrder.runTo('y', 450, 1000, 3);
@@ -462,6 +570,8 @@ var paladin = [
         })})
     }),
     speak(false, 'Guard', ['Prince Hassan come quick!', 'The temple is under attack by the Witnesses!'], () => {
+        mysts.pause();
+        battle.play();
         fOrd.runTo('y', -20, 800, 3, () => {
             fOrd.hide();
             goal13.complete();
@@ -510,7 +620,7 @@ var judeAnton = [
             antonEphyraPart2[0].run();
         });
     }),
-    speak(false, 'Jude', ['I was going to try to sleep at the inn but', "you've seem to have claimed the room."], () => {judeAnton[22].run();}),
+    speak(false, 'Jude', ['I was going to try to sleep at the inn but', "you've seem to have claimed the room."], () => {player.animations.run.stop(); player.size.sy = 0.1; judeAnton[22].run();}),
     speak(true, 'Anton', ["I don't mind. If you want to share my bed,", "that'll cost you."], () => {judeAnton[23].run();}),
     speak(false, 'Jude', ['...'], () => {judeAnton[24].run();}),
     speak(true, 'Anton', ['That was a joke. You know people tell them', 'to make each other laugh?'], () => {judeAnton[25].run();}),
@@ -656,7 +766,33 @@ var judeAnton = [
             });
         });
     }),
-
+    speak(true, 'Jude', ['Anton!'], () => {
+        playerRunTo('x', 419, 1500, 1, () => {playerRunTo('y', 510, 800, 0, () => {
+            judeAnton[99].run();
+        })});
+    }),
+    speak(false, 'Ilya', ["I didn't think I'd ever see your", 'face again. I assume you heard the news', 'about your proclaimed Last Prophet. Must', 'be heartbreaking.'], () => {judeAnton[100].run();}),
+    speak(true, 'Jude', ['I was mistaken once, but I know now,', 'the Last Prophet is in the water next', 'to you. You are never going to hurt him', 'again. Anton, we need to go.'], () => {judeAnton[101].run();}),
+    speak(false, 'Ilya', ['I told you.', "You can't run from this anymore. You can't", 'run from what is inside your own head.'], () => {judeAnton[102].run();}),
+    speak(true, 'Jude', ['You are my priority now Anton.', 'I will protect you at all costs.'], () => {
+        playerRunTo('y', -48, 1200, 3, () => {});
+        anton.runTo('x', 419, 500, 1, () => {anton.runTo('y', -48, 1200, 3, () => {
+            hassan.hide();
+            changePlayer('Hassan', () => {
+                player.source = sprites.hassan;
+                changeScene(backgrounds.nearLight, nearLight);
+                player.x = 600;
+                player.y = 392;
+                khepriComp.x = 660;
+                khepriComp.y = 150;
+                khepri.group = nearLight;
+                khepri.show();
+                khepri.runTo('y', 180, 200, 0, () => {
+                    hassanKhepri[15].run();
+                })
+            });
+        })})
+    })
 ];
 
 var ilyaAnton = [
@@ -754,6 +890,125 @@ var ilyaAnton = [
             hassanLethiaPart1[12].run();
         });
     }),
+    speak(false, 'Ilya', ['Nazirah is really quite the impressive city.', 'The very first rulers had the Grace of Mind,', 'and they used their abilities to build their capital', 'city into a technological marvel.'], () => {ilyaAnton[50].run()}),
+    speak(true, 'Anton', ['I thought you were supposed to hate the Graced'], () => {ilyaAnton[51].run()}),
+    speak(false, 'Ilya', ['Should I discount the ingenuity of my enemies', 'simply because I seek to best them?'], () => {ilyaAnton[52].run()}),
+    speak(true, 'Anton', ['What am I doing here Ilya?'], () => {ilyaAnton[53].run()}),
+    speak(false, 'Ilya', ['In Pallas Athos, you said that I once tried', 'to drown you in the frozen lake where we grew', 'up. Do you want to know the truth about', 'that day?'], () => {ilyaAnton[54].run()}),
+    speak(true, 'Anton', ['I know what happened'], () => {ilyaAnton[55].run()}),
+    speak(false, 'Ilya', ['I never tried to drown you. I found you', 'outside during the last snow of the season.', 'You stepped onto the frozen lake and the', 'ice broke beneath you. I', 'saved you from the lake.'], () => {ilyaAnton[56].run()}),
+    speak(false, 'Ilya', ['You grabbed my arm and looked at me.', 'You begged me to let you drown.'], () => {ilyaAnton[57].run()}),
+    speak(true, 'Anton', ["You're lying."], () => {ilyaAnton[58].run()}),
+    speak(false, 'Ilya', ['You saw something that day, Anton.', 'It was only later that I realized what', 'it meant. That you are not just the Graced', 'son of a cursed line. You saw something', 'no one has seen in a hundred years.'], () => {ilyaAnton[59].run()}),
+    speak(false, 'Ilya', ['You saw the future.', "That's what really happened that day. What you", 'were too afraid to admit to yourself. Now,', 'I want to know something. I want to know what', 'you saw.'], () => {
+        ilya.runTo('y', 495, 1000, 0, () => {});
+        playerRunTo('y', 545, 1000, 3, () => {
+            ilyaAnton[60].run();
+        });
+    }),
+    speak(true, 'Anton', ["Ilya, please, please don't do this.", "Please don't do this to me."], () => {ilyaAnton[61].run()}),
+    speak(false, 'Ilya', ["I wish I didn't have to. You've been through", "enough, haven't you?"], () => {ilyaAnton[62].run()}),
+    speak(false, 'Ilya', ["You CAN'T tell me, can you?", 'The memory of the lake is a gateway. I', 'figured it out when I saw you in Pallas Athos.', 'The way you reacted when you spoke of it.', 'You went back there. I saw it in your eyes.'], () => {ilyaAnton[63].run()}),
+    speak(true, 'Anton', ['Stop.'], () => {ilyaAnton[64].run()}),
+    speak(false, 'Ilya', ['You were there, drowning like you did five years', 'ago, trying to escape what you saw in your vision.'], () => {ilyaAnton[65].run()}),
+    speak(true, 'Anton', ['Stop.'], () => {ilyaAnton[66].run()}),
+    speak(false, 'Ilya', ['I remember what you were like that day.', 'You were in a trance. I could not reach you,', 'no matter how hard I tried. The vision had', "a hold on you, and I couldn't break you out of it."], () => {ilyaAnton[67].run()}),
+    speak(true, 'Anton', ['No, not the water again', 'no, no..'], () => {ilyaAnton[68].run()}, true),
+    speak(false, 'Ilya', ['What did you see, Anton?', 'What did you see that made you want to die', 'rather than live with it in your head?'], () => {
+        changePlayer('Hassan', () => {
+            changeScene(backgrounds.nearLight, nearLight);
+            player.source = sprites.hassan;
+            player.x = 627;
+            player.y = 395;
+            direction = 2;
+            hier.show();
+            judeComp.x = 660;
+            judeComp.y = 185;
+            jude.direction = 0;
+            jude.group = nearLight;
+            jude.show();
+        }, () => {
+            jude.runTo('y', 260, 500, 0, () => {});
+            hier.runTo('x', 735, 1300, 1, () => {
+                hierSpeak[0].run();
+            });
+        });
+    }),
+    speak(true, 'Anton', ['Please. Please stop drowning me.'], () => {ilyaAnton[70].run()}),
+    speak(false, 'Ilya', ['You want this to stop?', 'Tell me what you saw.'], () => {ilyaAnton[71].run()}),
+    speak(true, 'Anton', ["You're going to kill me.", 'I always knew you would.'], () => {ilyaAnton[72].run()}),
+    speak(false, 'Ilya', ['Tell me what you saw and this will', 'all be over.'], () => {ilyaAnton[73].run()}),
+    speak(true, 'Anton', ["I can't. I don't know what I saw, why I tried to--", 'Why are you doing this?', 'Why do you need to know what I saw?'], () => {ilyaAnton[74].run()}),
+    speak(false, 'Ilya', ['Before you begged me to let you drown, you', 'said something else. You said "It is', 'coming. The darkness."'], () => {ilyaAnton[75].run()}),
+    speak(false, 'Ilya', ["I didn't know what it meant then. But after", 'I joined the Witnesses, the Hierophant shared with', 'me his most closely kept secret. A secret that few others', 'know. But he trusted me with it.'], () => {ilyaAnton[76].run()}),
+    speak(false, 'Ilya', ['Before the Prophets disappeared, they made a', 'final prophecy. A prophecy that predicted the', 'to those who stand against the natural order of', 'the world. A Reckoning that would restore the world', 'to the way it was before the Prophets.'], () => {ilyaAnton[77].run()}),
+    speak(false, 'Ilya', ['They called it the Age of Darkness.', "The Prophets didn't know how this knew age", 'would come about. But you do. You saw what they could not.', 'You saw the Reckoning, Anton.', 'You saw it all.'], () => {ilyaAnton[78].run()}),
+    speak(true, 'Anton', ['No.', "I don't know about a Reckoning. I don't", 'know anything.'], () => {ilyaAnton[79].run()}),
+    speak(false, 'Ilya', ['Anton, you are putting yourself in more', 'pain. Just tell me.'], () => {ilyaAnton[80].run()}),
+    speak(true, 'Anton', ['I need to get help somehow.', 'Can I channel my esha, and', 'send a message? I have to try'], () => {ilyaAnton[81].run()}, true),
+    speak(true, 'Anton', ['All I feel is darkness.', 'Help. Help me.'], () => {
+        changePlayer('Jude', () => {
+            changeScene(backgrounds.nearLight, nearLight);
+            player.source = sprites.jude;
+            player.x = 660;
+            player.y = 260;
+            hassan.show();
+        }, () => {
+            hierSpeak[20].run();
+        })
+    }, true),
+];
+
+var hierSpeak = [
+    speak(false, 'The Hierophant', ["It's time now you knew the truth."], () => {hierSpeak[1].run()}),
+    speak(false, 'Jude', ['The truth?', 'We know what you really are.', 'You are the Deciever.'], () => {hierSpeak[2].run()}),
+    speak(false, 'The Hierophant', ['Ah, yes, the Deciever.', 'The first harbinger of our new age, according', 'to the prophecy. You believe it is I?', 'What falsehood have I spoken?'], () => {hierSpeak[3].run()}),
+    speak(false, 'Jude', ["You've told your followers lies about the Graced,", 'convincing them to hate us.', "You claim you were once an acolyte, but there's", 'no trace of you at any of the temples.', 'You have slandered the names of the Prophets and', 'led these people all astray.'], () => {hierSpeak[4].run()}),
+    speak(false, 'The Hierophant', ['My followers are not the ones who have been', 'lead astray. And I have preached no', 'lies. But there is someone here who has.', 'Someone whose deception has led you all here.'], () => {hierSpeak[5].run()}),
+    speak(false, 'Lethia', ['Tell them, Prince Hassan.', 'Or perhaps ... you cannot admit it, even now.', "Perhaps you'd rather these people face the", 'Reckoning without knowing the true reason', 'they are here.'], () => {hierSpeak[6].run()}),
+    speak(true, 'Hassan', ["No. I'll tell them."], () => {hierSpeak[7].run()}),
+    speak(true, 'Hassan', ['The truth,', 'is that I am not the Prophet.'], () => {hierSpeak[8].run()}),
+    speak(false, 'Jude', ['I--', "You're lying."], () => {hierSpeak[9].run()}),
+    speak(true, 'Hassan', ['I thought that I was the Prophet.', 'I believed it for much longer than', 'I should have. But my vision was nothing', 'more than a dream. And even when I', 'realized the truth, I let the lie continue.'], () => {hierSpeak[10].run()}),
+    speak(true, 'Hassan', ['For that, I--I have no excuse.'], () => {hierSpeak[11].run()}),
+    speak(false, 'Jude', ['The day you were born, the sky lit up--'], () => {hierSpeak[12].run()}),
+    speak(true, 'Hassan', ['A mere coincidence.'], () => {hierSpeak[13].run()}),
+    speak(false, 'Jude', ['But the prophecy of Nazirah,', 'it was undone when the Witnesses took', 'the city.'], () => {hierSpeak[14].run()}),
+    speak(false, 'Lethia', ['Wrong.', 'The lighthouse stands, and the Seif line still rules', 'this kingdom. I am the heir of my mother. I', 'am the Queen of Herat.'], () => {hierSpeak[15].run()}),
+    speak(false, 'Jude', ['But--', 'the vision. The vision that showed us how', 'how to stop the Age of Darkness.'], () => {hierSpeak[16].run()}),
+    speak(true, 'Hassan', ['It was a dream.', 'Nothing more.'], () => {hierSpeak[17].run()}),
+    speak(false, 'Jude', ["You're not the Last Prophet.", 'It was never you.'], () => {hierSpeak[18].run()}),
+    speak(false, 'The Hierophant', ['He is but a false Prophet.', 'A Deciever.'], () => {hierSpeak[19].run()}),
+    speak(false, 'The Hierophant', ['Prince Hassan is the first harbinger of the', 'Age of Darkness.'], () => {
+        changePlayer('Anton', () => {
+            player.source = sprites.anton;
+            changeScene(backgrounds.shore, shore);
+            player.x = 650;
+            player.y = 545;
+            direction = 0;
+            ilyaComp.x = 670;
+            ilyaComp.y = 510;
+        }, () => {
+            ilyaAnton[69].run();
+        })
+    }),
+    speak(false, 'The Hierophant', ['Retribution is here.', 'Jude Weatherborne, you will be the first', 'to face the Reckoning.', 'Lethia, let us prepare the godfire and', 'cleanse the earth.'], () => {
+        hier.runTo('x', 1135, 1000, 2, () => {});
+        lethia.runTo('x', 1135, 1000, 2, () => {
+            hier.hide();
+            lethia.hide();
+            setTimeout(() => {
+                hierSpeak[21].run();
+            }, 1000);
+        });
+    }),
+    speak(false, '???', ['Help. Help me.'], () => {hierSpeak[22].run();}, true),
+    speak(true, 'Jude', ['What and who is this?', 'I recognize this esha. It is special.', 'This is the esha of the Last Prophet.', 'I must save them!'], () => {
+        goal14.complete();
+        cts = false;
+        anton.show();
+        jude.hide();
+    }, true),
 ];
 
 /*
@@ -768,7 +1023,7 @@ var ilyaAnton = [
         changeScene(backgrounds.double, double);
         player.x = 293;
         player.y = 212;
-        direction = 1;
+        direction = 1;/
         mOrderComp.x = 240;
         mOrderComp.y = 212;
         mOrder.direction = 2;
@@ -903,7 +1158,7 @@ var goal7 = new Objective(['Make a deal with Ephyra'], () => {scry.important = f
 var goal8 = new Objective(['Meet at the docks', 'with the Order of the Last Light'], () => {jude.hide(); jude.group = antonStreet});
 var goal9 = new Objective(['Go to the Temple to meet Ilya']);
 var goal10 = new Objective(['Speak to Aunt Lethia']);
-var goal11 = new Objective(['Lead Hector to Beru'], () => {healer.important = true; jude.runTo('x', player.x, 300, 2, () => {jude.hide();})});
+var goal11 = new Objective(['Lead Hector to Beru'], () => {judeOww.run();});
 var goal12 = new Objective(['Find Jude a healer']);
 var goal13 = new Objective(['Beat the captain at Rock-Paper-Scissors'], () => {captain.important = false;});
 var goal14 = new Objective(['Speak to Khepri']);
@@ -1088,6 +1343,21 @@ var nearTrig1 = new Trigger(nearTrigC1, () => {
     player.y = 44;
     player.x = 1274;
     direction = 1;
+    if(currentObjective == 14){
+        cts = true;
+        player.animations.run.stop();
+        player.size.sy = 0.1;
+        judeAnton[98].run();
+    }
+}, nearLight);
+
+var boomComp = comp(1180, 323, {width:5, height:96},);
+var boom = new Trigger(boomComp, () => {
+    if(currentObjective == 16){
+        hassanKhepri[25].run();
+        cts = true;
+        player.x -= 30;
+    }
 }, nearLight);
 
 //Shore
@@ -1151,8 +1421,9 @@ var theWindow = new NPC(windowComp, windowComp, 0, () => {
 
 var scryComp = comp(416, 416, {height:48, width:48}, {type:'image', source:sprites.scry});
 var scry = new NPC(scryComp, scryComp, 0, () => {
-    if(currentObjective != 5) return false;
+    if(currentObjective != 5 && !scry.important) return false;
     cts = true;
+    scry.important = false;
     playChangeText.hide();
     playerChange.animations.show.run(() => {
         direction = 3;
@@ -1208,6 +1479,36 @@ var captain = new NPC(captainComp, captainComp, 0, () => {
 var fOrdComp = comp(535, -20, {width:48, height:48, sWidth:16, sHeight:16}, {type:'image', source:sprites.femaleOrder});
 var fOrd = new NPC(fOrdComp, fOrdComp, 0, () => {}, lethiaHouse); fOrd.hide();
 
+var hierComp = comp(1078, 455, {width:48, height:48, sWidth:16, sHeight:16}, {type:'image', source:sprites.hierophant});
+var hier = new NPC(hierComp, hierComp, 1, () => {}, nearLight); hier.hide();
+
+var hassanComp = comp(600, 392, {width:48, height:48, sWidth:16, sHeight:16}, {type:'image', source:sprites.hassan});
+var hassan = new NPC(hassanComp, hassanComp, 2, () => {}, nearLight); hassan.hide();
+
+var antonComp = comp(650, 545, {width:48, height:48, sWidth:16, sHeight:16}, {type:'image', source:sprites.anton});
+var anton = new NPC(antonComp, antonComp, 0, () => {}, shore); anton.hide();
+
+var boxComp = comp(240, 135, {width:64, height:64, sWidth:48, sHeight:48}, {type:'image', source:sprites.boxes});
+var boxes = new NPC(boxComp, boxComp, 0, () => {
+    if(currentObjective == 15 && boxes.important){
+        playChangeText.hide();
+        cts = true;
+        playerChange.animations.show.run(() => {
+            boxes.important = false;
+            boxes.hide();
+            player.x = 720;
+            player.y = 450;
+            direction = 3;
+            khepriComp.x = 720;
+            khepriComp.y = 405;
+            khepri.direction = 0;
+            playerChange.animations.hide.run(() => {
+                hassanKhepri[21].run();
+            });
+        });
+    }
+}, nearLight);
+
 var player =  comp(100, 100, {width:48, height:48, sWidth:16, sHeight:16}, {type:'image', source:sprites.hassan});
 player.addTextureAnimation("run", [{path:'sy', value:16.1, time:300}, {path:'sy', value:32.1, time:300}]);
 player.animations.run.run(); player.animations.run.stop();
@@ -1256,6 +1557,7 @@ playerChange.addAnimation('show', [{path:'opacity', value: 1}], 800, 'linear');
 playerChange.addAnimation('hide', [{path:'opacity', value: 0}], 1000, 'linear');
 var playChangeBox = comp(0, 0, {width:1366, height:657}, {fill:{color:'black',}}); playChangeBox.setGroup(playerChange);
 var playChangeText = comp(683, 300, {font:75}, {type:'text', font:'consolas', modifiers:'bold', fill:{color:'white'}, text:['Now playing as:', 'Anton']}); playChangeText.setGroup(playerChange);
+playChangeText.addAnimation('show', [{path:'opacity', value:1}], 800, 'linear');
 function changePlayer(player, middle, after){
     middle = middle || function () {};
     after = after || function () {};
@@ -1303,6 +1605,16 @@ var credText = comp(683, 700, {font:40}, {type:'text', font:'consolas', fill:{co
     '#1462284',
     'Instrumentation - Seth Parcell',
     '',
+    'Final Battle',
+    'Artist - WaterFlame',
+    'MIDI Transcription: onlinesequencer.net,',
+    'Instrumentation - Seth Parcell',
+    '',
+    'The Falling Mysts',
+    'Artist - Dimrain47',
+    'MIDI Transcription: onlinesequencer.net,',
+    'Instrumentation - Seth Parcell',
+    '',
     'Characters, story-line, and dialogue',
     'created by Katy Rose Pool for the book',
     'There Will Come a Darkness',
@@ -1323,10 +1635,19 @@ var loadQuote = comp(683, 300, {font:40}, {type:'text', fill:{color:'tan'}, font
 var loadText = comp(683, 600, {font:28}, {type:'text', font:'consolas', text:['Loading...']}); loadText.setGroup(loading);
 
 loading.addAnimation('hide', [{path:'opacity', value:0,}], 1000, 'linear');
+var continueYet = false;
 function openMainMenu() {
-    loading.animations.hide.run(() => {
-        loading.hide();
-        mainData.active = true;
-        mainData.move = true;
-    });
+    loadText.text = ['Loading Complete! Click anywhere to continue'];
+    continueYet = true;
 }
+canvas.element.addEventListener('click', () => {
+    if(continueYet){
+        bosanska.play();
+        continueYet = false;
+        loading.animations.hide.run(() => {
+            loading.hide();
+            mainData.active = true;
+            mainData.move = true;
+        });
+    }
+})
