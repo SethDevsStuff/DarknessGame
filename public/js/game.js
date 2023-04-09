@@ -5,6 +5,12 @@ canvas.ctx.imageSmoothingEnabled = false;
 var bosanska = new Audio('Bosanska-Artiljerija.mp3');
 bosanska.setAttribute('loop', true);
 
+var mysts = new Audio('The-Falling-Mysts.mp3');
+mysts.setAttribute('loop', true);
+
+var battle = new Audio('Final-Battle.mp3');
+battle.setAttribute('loop', true);
+
 var keys = [];
 window.addEventListener("keydown", handleKeyAction);
 window.addEventListener("keyup", handleKeyAction);
@@ -33,6 +39,7 @@ var sprites = {
     scry: image('img/scry.png'),
     healer: image('img/healer.png'),
     captain: image('img/captain.png'),
+    boxes: image('img/boxes.png'),
 };
 
 var backgrounds = {
@@ -177,6 +184,9 @@ function processKeys(){
                 if(mainData.location == 'main' && mainData.selection == 1 && mainData.move){
                     playChangeText.hide();
                     playerChange.animations.show.run(() => {
+                        bosanska.pause();
+                        bosanska.currentTime = 0;
+                        mysts.play();
                         mainMenu.hide();
                         mainData.active = false;
                         mainData.move = false;
@@ -187,7 +197,7 @@ function processKeys(){
                     mainData.move = false;
                     setTimeout(function () {
                         mainData.move = true;
-                    }, 1000)
+                    }, 1000);
                     mainData.location = 'credits';
                     credText.animations.scroll.run(() => {
                         mainData.location = 'main';
@@ -218,7 +228,7 @@ function processKeys(){
                 }
             }
         }
-        else if(keys.includes(32) && !mainData.active){//Space
+        else if(keys.includes(32) && !mainData.active && inMenu){//Space
             if(!menuCooldown){
                 boxMain.hide();
                 boxOther.hide();
@@ -419,4 +429,12 @@ function detectCrash(comp1, comp2){
 function quote(text, author){
     text.push('                 -' + author);
     return text;
+}
+
+function isEven(num){
+    var cut = num/2;
+    if(cut == Math.floor(cut)){
+        return true;
+    }
+    return false;
 }
