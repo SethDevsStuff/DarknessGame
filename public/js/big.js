@@ -21,7 +21,7 @@ var backgroundInf = [
     speak(true, '', ['Firstly, the Grace of Blood.', 'The power to give or take Esha,', 'which can heal or harm. This Grace', 'is importantly utilized by healers, who', 'give esha to patients in order to heal.'], () => {backgroundInf[3].run();}),
     speak(true, '', ['The Grace of Heart.', 'The ability to flow esha into parts', 'of the body, enhancing the strength, speed,', 'agility, and senses. Those with this Grace', 'typically become warriors.'], () => {backgroundInf[4].run();}),
     speak(true, '', ['The Grace of Mind.', 'The power to imbue objects with esha,', 'adding unique and helpful properties', 'to the objects. Used by alchemists', 'and artificers.'], () => {backgroundInf[5].run();}),
-    speak(true, '', ['The Grace of Sight.', 'The rarest of the four graces and unlike', 'the rest. Rather than manipulating esha,', 'the Graced of Sight can detect esha all around them,', 'and can locate the source of anyones esha just using', 'a name.'], () => {backgroundInf[6].run();}),
+    speak(true, '', ['The Grace of Sight.', 'The rarest of the four graces and unlike', 'the rest. Rather than manipulating esha,', 'the Graced of Sight can detect esha all around them,', 'and can locate the source of anyones esha just using', 'a name. Used by scryers,', 'a business built around finding people'], () => {backgroundInf[6].run();}),
     speak(true, '', ['Even more rarely will one with the Grace', 'of Sight be able to see they future.', 'The lucky few are prophets, but there has not', 'been one in one hundred years...'], () => {
         playerChange.animations.hide.run(() => {
             playChangeText.show();
