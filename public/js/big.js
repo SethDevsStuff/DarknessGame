@@ -345,7 +345,7 @@ var antonDream = [
     speak(true, 'Anton', ['This is my purpose.', 'The fate of the world rests on my shoulders.', 'I am the Last Prophet.', 'And I will stop the Age of Darkness', 'in its tracks.'], () => {
         playChangeText.text = ['To be continued...'];
         setTimeout(() => {
-            playChangeBox.fill.color = black;
+            playChangeBox.fill.color = 'black';
             setTimeout(function () {
                 battle.pause();
                 bosanska.play();
